@@ -52,6 +52,7 @@
     <Compile Include="Compliance\IComplianceRecord.cs" />
     <Compile Include="Compliance\IComplianceRecordsFilter.cs" />
     <Compile Include="IDataService.cs" />
+    <Compile Include="IIdentityProvider.cs" />
     <Compile Include="ILoginService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserManagement\ILocalUser.cs" />

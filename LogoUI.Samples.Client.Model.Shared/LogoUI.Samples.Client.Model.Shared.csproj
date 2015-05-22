@@ -57,6 +57,8 @@
   <ItemGroup>
     <Compile Include="ComplianceRecord.cs" />
     <Compile Include="DataService.cs" />
+    <Compile Include="DefaultIdentityProvider.cs" />
+    <Compile Include="IdentityContext.cs" />
     <Compile Include="LoginService.cs" />
     <Compile Include="LogoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Security.Principal;
 using System.Windows.Input;
 using Caliburn.Micro;
 using LogoFX.Practices.IoC;
@@ -12,6 +11,7 @@ using LogoUI.Samples.Client.Gui.Shared.UiServices;
 using LogoUI.Samples.Client.Gui.Shared.ViewModels;
 using LogoUI.Samples.Client.Gui.Shell.Properties;
 using LogoUI.Samples.Client.Model.Contracts;
+using LogoUI.Samples.Client.Model.Shared;
 
 namespace LogoUI.Samples.Client.Gui.Shell.ViewModels
 {
@@ -36,6 +36,7 @@ namespace LogoUI.Samples.Client.Gui.Shell.ViewModels
                 Resources.Windows_Authentication, 
                 Resources.Network_Authentication
             };
+            _userName = GetUserAuthenticated();
         }
 
         private ICommand _loginCommand;
@@ -95,8 +96,7 @@ namespace LogoUI.Samples.Client.Gui.Shell.ViewModels
             {
                 if (string.IsNullOrEmpty(_selectedLogin))
                 {
-                    _selectedLogin = _loginOptions.First();
-                    UserName = GetUserAuthenticated();
+                    _selectedLogin = _loginOptions.First();                    
                 }
 
                 return _selectedLogin;
@@ -226,15 +226,15 @@ namespace LogoUI.Samples.Client.Gui.Shell.ViewModels
             _navigationService.Navigate<IMainViewModel>();
         }
 
-        //Checks if the user Authentication 
+        //TODO: this method has side-effects and should be refactored
         private string GetUserAuthenticated()
         {
-            var accountToken = WindowsIdentity.GetCurrent();
-            if (accountToken != null && accountToken.IsAuthenticated)
-                return accountToken.Name;
-
-            LoginFailureCause = "UnAuthorized User";
-            return "UnAuthorized User";
+            var userName = IdentityContext.Current.Name;
+            if (userName == null)
+            {
+                LoginFailureCause = "Unauthenticated User";
+            }
+            return userName;
         }
     }
 }
