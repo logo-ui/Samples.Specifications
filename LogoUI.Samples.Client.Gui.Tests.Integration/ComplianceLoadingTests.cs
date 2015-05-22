@@ -16,8 +16,10 @@ namespace LogoUI.Samples.Gui.Tests.Integration
     {        
         [Test]
         public void ServerReturnsComplianceRecords_ComplianceScreenIsAccessed_ComplianceRecordsAreDisplayed()
-        {            
-            RegisterService<ILoginProvider>(new FakeTestLoginProvider());
+        {
+            var fakeLoginProvider = new FakeTestLoginProvider();
+            fakeLoginProvider.SetupLoginSuccess();
+            RegisterService<ILoginProvider>(fakeLoginProvider);
             const int numberOfRecords = 100;
             RegisterBuilder(ComplianceProviderBuilder.CreateBuilder().WithComplianceRecord(numberOfRecords));
 

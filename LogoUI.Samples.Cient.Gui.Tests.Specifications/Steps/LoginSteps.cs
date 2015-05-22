@@ -1,11 +1,12 @@
 ﻿using Caliburn.Micro;
+using LogoUI.Samples.Client.Data.Providers.Contracts;
 using LogoUI.Samples.Client.Gui.Shell.ViewModels;
 using LogoUI.Samples.Client.Gui.Tests.Fake;
 using LogoUI.Samples.Client.Model.Shared;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
-namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Features.Login.Steps
+namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Steps
 {
     [Binding]
     class LoginSteps : IntegrationTestsBase
@@ -22,7 +23,23 @@ namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Features.Login.Steps
         public void GivenIAmAnUnauthenticatedUser()
         {
             IdentityContext.Current = new FakeIdentityProvider {Name = null};
+        }               
+
+        [Given(@"Login request succeeds")]
+        public void GivenLoginRequestSucceeds()
+        {
+            var fakeLoginProvider = new FakeTestLoginProvider();
+            fakeLoginProvider.SetupLoginSuccess();
+            RegisterService<ILoginProvider>(fakeLoginProvider);            
         }
+
+        [Given(@"Login request fails")]
+        public void GivenLoginRequestFails()
+        {
+            var fakeLoginProvider = new FakeTestLoginProvider();
+            fakeLoginProvider.SetupLoginFailure();
+            RegisterService<ILoginProvider>(fakeLoginProvider); 
+        } 
 
         [When(@"I open the application")]
         public void WhenIOpenTheApplication()
@@ -38,8 +55,29 @@ namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Features.Login.Steps
             loginViewModel.SelectedLogin = "Network Authentication";
         }
 
+        [When(@"I press the login button")]
+        public void WhenIPressTheLoginButton()
+        {
+            var loginViewModel = (LoginViewModel)_rootObject.ActiveItem;
+            loginViewModel.LoginCommand.Execute(null);
+        }        
+
         [Then(@"Application automatically navigates to the login screen")]
         public void ThenApplicationAutomaticallyNavigatesToTheLoginScreen()
+        {
+            var activeItem = _rootObject.ActiveItem;
+            Assert.IsInstanceOf<LoginViewModel>(activeItem);
+        }
+
+        [Then(@"Application navigates to the main screen")]
+        public void ThenApplicationNavigatesToTheMainScreen()
+        {
+            var activeItem = _rootObject.ActiveItem;
+            Assert.IsInstanceOf<MainViewModel>(activeItem);
+        }
+
+        [Then(@"User remains at the login screen")]
+        public void ThenUserRemainsAtTheLoginScreen()
         {
             var activeItem = _rootObject.ActiveItem;
             Assert.IsInstanceOf<LoginViewModel>(activeItem);

@@ -28,3 +28,19 @@ Scenario: Clear username when user switched to the network authentication option
 	And I select the network authentication option
 	Then Username text box contains ''
 
+@Integration
+Scenario: Navigate to the main screen when the login is successful
+	Given I am an authenticated user with username 'Vasya'
+	And Login request succeeds
+	When I open the application
+	And I press the login button
+	Then Application navigates to the main screen
+
+@Integration
+Scenario: Remain at the login screen when the login fails
+	Given I am an authenticated user with username 'Vasya'
+	And Login request fails
+	When I open the application
+	And I press the login button
+	Then User remains at the login screen
+	And Error message is displayed with the following text 'Login failed'
