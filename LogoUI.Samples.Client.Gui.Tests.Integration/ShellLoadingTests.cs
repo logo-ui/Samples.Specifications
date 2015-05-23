@@ -6,7 +6,7 @@ namespace LogoUI.Samples.Gui.Tests.Integration
 {
     [TestFixture]
     [Category("Integration")]
-    public class ShellLoadingTests : IntegrationTestsBase
+    public class ShellLoadingTests : IntegrationTestsBaseWithActivation
     {        
         [Test]
         public void Initialization_DoesNotThrow()

@@ -75,9 +75,8 @@
     <Reference Include="LogoFX.UI.Navigation">
       <HintPath>..\Lib\LogoFX\LogoFX.UI.Navigation.dll</HintPath>
     </Reference>
-    <Reference Include="LogoFX.UI.Tests.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\LogoFX\LogoFX.UI.Tests.Core.dll</HintPath>
+    <Reference Include="LogoFX.UI.Tests.NUnit">
+      <HintPath>..\Lib\LogoFX\LogoFX.UI.Tests.NUnit.dll</HintPath>
     </Reference>
     <Reference Include="LogoFX.UI.ViewModels">
       <HintPath>..\Lib\LogoFX\LogoFX.UI.ViewModels.dll</HintPath>
@@ -109,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComplianceLoadingTests.cs" />
+    <Compile Include="IntegrationTestsBaseWithActivation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShellLoadingTests.cs" />
   </ItemGroup>

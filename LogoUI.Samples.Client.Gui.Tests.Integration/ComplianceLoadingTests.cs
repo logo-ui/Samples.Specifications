@@ -5,14 +5,13 @@ using LogoUI.Samples.Client.Gui.Modules.Compliance.ViewModels;
 using LogoUI.Samples.Client.Gui.Shell.ViewModels;
 using LogoUI.Samples.Client.Gui.Tests.Fake;
 using LogoUI.Samples.Fake.Builders;
-using LogoUI.Samples.Gui.Tests.Shared;
 using NUnit.Framework;
 
 namespace LogoUI.Samples.Gui.Tests.Integration
 {
     [TestFixture]
     [Category("Integration")]
-    public class ComplianceLoadingTests : IntegrationTestsBase
+    public class ComplianceLoadingTests : IntegrationTestsBaseWithActivation
     {        
         [Test]
         public void ServerReturnsComplianceRecords_ComplianceScreenIsAccessed_ComplianceRecordsAreDisplayed()

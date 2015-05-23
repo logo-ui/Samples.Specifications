@@ -73,6 +73,9 @@
     <Reference Include="LogoFX.UI.Tests.Infra">
       <HintPath>..\Lib\LogoFX\LogoFX.UI.Tests.Infra.dll</HintPath>
     </Reference>
+    <Reference Include="LogoFX.UI.Tests.Specflow">
+      <HintPath>..\Lib\LogoFX\LogoFX.UI.Tests.Specflow.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -118,6 +121,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Logout.feature</DependentUpon>
+    </Compile>
+    <Compile Include="IntegrationTestsBase.cs">
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Steps\GeneralSteps.cs" />
     <Compile Include="Steps\LoginSteps.cs" />
