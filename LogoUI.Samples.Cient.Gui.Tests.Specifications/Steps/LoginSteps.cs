@@ -10,9 +10,7 @@ namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Steps
 {
     [Binding]
     class LoginSteps : IntegrationTestsBase
-    {
-        private ShellViewModel _rootObject;
-
+    {        
         [Given(@"I am an authenticated user with username '(.*)'")]
         public void GivenIAmAnAuthenticatedUserWithUsername(string userName)
         {
@@ -46,67 +44,67 @@ namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Steps
             var fakeLoginProvider = new FakeTestLoginProvider();
             fakeLoginProvider.SetupLoginFailure();
             RegisterService<ILoginProvider>(fakeLoginProvider); 
-        } 
+        }
 
         [When(@"I open the application")]
         public void WhenIOpenTheApplication()
         {
-            _rootObject = CreateRootObject();
-            ScreenExtensions.TryActivate(_rootObject);
+            ScenarioContext.Current.Add("test", CreateRootObject());
+            ScreenExtensions.TryActivate(ScenarioContext.Current["test"]);
         }
 
         [When(@"I select the network authentication option")]
         public void WhenISelectTheNetworkAuthenticationOption()
         {
-            var loginViewModel = (LoginViewModel)_rootObject.ActiveItem;
+            var loginViewModel = GetLogin();
             loginViewModel.SelectedLogin = "Network Authentication";
-        }
+        }        
 
         [When(@"I press the login button")]
         public void WhenIPressTheLoginButton()
         {
-            var loginViewModel = (LoginViewModel)_rootObject.ActiveItem;
+            var loginViewModel = GetLogin();
             loginViewModel.LoginCommand.Execute(null);
         }
 
         [When(@"I press the logout button")]
         public void WhenIPressTheLogoutButton()
         {
-            _rootObject.LogoutCommand.Execute(null);
+            GetShell().LogoutCommand.Execute(null);
         }
 
         [Then(@"Application automatically navigates to the login screen")]
         public void ThenApplicationAutomaticallyNavigatesToTheLoginScreen()
         {
-            var activeItem = _rootObject.ActiveItem;
+            var activeItem = GetActiveItem();
             Assert.IsInstanceOf<LoginViewModel>(activeItem);
-        }
+        }        
 
         [Then(@"Application navigates to the main screen")]
         public void ThenApplicationNavigatesToTheMainScreen()
         {
-            var activeItem = _rootObject.ActiveItem;
+            var activeItem = GetActiveItem();
             Assert.IsInstanceOf<MainViewModel>(activeItem);
         }
 
         [Then(@"User remains at the login screen")]
         public void ThenUserRemainsAtTheLoginScreen()
         {
-            var activeItem = _rootObject.ActiveItem;
+            var activeItem = GetActiveItem();
             Assert.IsInstanceOf<LoginViewModel>(activeItem);
         }
 
         [Then(@"User returns to the login screen")]
         public void ThenUserReturnsToTheLoginScreen()
         {
-            var activeItem = _rootObject.ActiveItem;
+            var activeItem = GetActiveItem();
             Assert.IsInstanceOf<LoginViewModel>(activeItem);
         }
 
         [Then(@"Local authentication is automatically selected in the authentication options list")]
         public void ThenLocalAuthenticationIsAutomaticallySelectedInTheAuthenticationOptionsList()
         {
-            var loginViewModel = (LoginViewModel)_rootObject.ActiveItem;
+            var loginViewModel = GetLogin();
             var selectedLogin = loginViewModel.SelectedLogin;
             StringAssert.AreEqualIgnoringCase("Local authentication",selectedLogin);
         }
@@ -114,7 +112,7 @@ namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Steps
         [Then(@"Username text box contains '(.*)'")]
         public void ThenUsernameTextBoxContains(string userName)
         {
-            var loginViewModel = (LoginViewModel)_rootObject.ActiveItem;
+            var loginViewModel = GetLogin();
             var actualUserName = loginViewModel.UserName;
             Assert.AreEqual(userName, actualUserName);
         }        
@@ -122,7 +120,7 @@ namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Steps
         [Then(@"Error message is displayed with the following text '(.*)'")]
         public void ThenErrorMessageIsDisplayedWithTheFollowingText(string expectedErrorMessage)
         {
-            var loginViewModel = (LoginViewModel)_rootObject.ActiveItem;
+            var loginViewModel = GetLogin();
             var actualErrorMessage = loginViewModel.LoginFailureCause;
             StringAssert.AreEqualIgnoringCase(expectedErrorMessage, actualErrorMessage);
         }
@@ -130,9 +128,23 @@ namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Steps
         [Then(@"Username displayed at the top of the screen says '(.*)'")]
         public void ThenUsernameDisplayedAtTheTopOfTheScreenSays(string userName)
         {
-            var actualUserName = _rootObject.CurrentUser;
+            var actualUserName = GetShell().CurrentUser;
             Assert.AreEqual(userName, actualUserName);
+        }        
+
+        private static LoginViewModel GetLogin()
+        {
+            return (LoginViewModel)GetActiveItem();
         }
 
+        private static IScreen GetActiveItem()
+        {
+            return (GetShell()).ActiveItem;
+        }
+
+        private static ShellViewModel GetShell()
+        {
+            return (ShellViewModel)ScenarioContext.Current["test"];
+        }
     }
 }
