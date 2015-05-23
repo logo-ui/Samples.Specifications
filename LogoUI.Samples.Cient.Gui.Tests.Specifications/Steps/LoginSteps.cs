@@ -1,4 +1,5 @@
 ﻿using Attest.Fake.Moq;
+using Attest.Tests.Specflow;
 using LogoUI.Samples.Client.Data.Providers.Contracts;
 using LogoUI.Samples.Client.Gui.Shell.ViewModels;
 using LogoUI.Samples.Client.Gui.Tests.Fake;

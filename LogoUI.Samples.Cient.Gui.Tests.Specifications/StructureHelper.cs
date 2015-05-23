@@ -1,4 +1,5 @@
-﻿using Caliburn.Micro;
+﻿using Attest.Tests.Specflow;
+using Caliburn.Micro;
 using LogoUI.Samples.Client.Gui.Shell.ViewModels;
 
 namespace LogoUI.Samples.Cient.Gui.Tests.Specifications

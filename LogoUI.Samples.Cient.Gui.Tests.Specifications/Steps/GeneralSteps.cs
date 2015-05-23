@@ -1,4 +1,5 @@
-﻿using Caliburn.Micro;
+﻿using Attest.Tests.Specflow;
+using Caliburn.Micro;
 using TechTalk.SpecFlow;
 
 namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Steps

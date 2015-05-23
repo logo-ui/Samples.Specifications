@@ -1,4 +1,5 @@
 ﻿using Attest.Fake.Moq;
+using Attest.Tests.Specflow;
 using TechTalk.SpecFlow;
 
 namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Steps

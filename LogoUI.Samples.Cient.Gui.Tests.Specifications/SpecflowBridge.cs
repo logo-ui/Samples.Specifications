@@ -1,5 +1,6 @@
 ﻿using System.Windows.Threading;
 using Attest.Fake.Moq;
+using Attest.Tests.Specflow;
 using Caliburn.Micro;
 using LogoFX.UI.Bootstrapping.SimpleContainer;
 using LogoFX.UI.Tests.Infra;
