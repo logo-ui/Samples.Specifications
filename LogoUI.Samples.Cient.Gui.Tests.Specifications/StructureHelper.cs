@@ -1,6 +1,5 @@
 ﻿using Caliburn.Micro;
 using LogoUI.Samples.Client.Gui.Shell.ViewModels;
-using TechTalk.SpecFlow;
 
 namespace LogoUI.Samples.Cient.Gui.Tests.Specifications
 {
@@ -18,7 +17,7 @@ namespace LogoUI.Samples.Cient.Gui.Tests.Specifications
 
         internal static ShellViewModel GetShell()
         {
-            return (ShellViewModel)ScenarioContext.Current["rootObject"];
+            return (ShellViewModel)ScenarioHelper.RootObject;
         }
     }
 }

@@ -119,6 +119,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Logout.feature</DependentUpon>
     </Compile>
+    <Compile Include="IntegrationTestsBase.cs" />
     <Compile Include="ScenarioHelper.cs" />
     <Compile Include="Steps\GeneralSteps.cs" />
     <Compile Include="Steps\LoginSteps.cs" />

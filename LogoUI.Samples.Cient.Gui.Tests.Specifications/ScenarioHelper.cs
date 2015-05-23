@@ -34,5 +34,10 @@ namespace LogoUI.Samples.Cient.Gui.Tests.Specifications
         {
             get { return ScenarioContext.Current[ContainerKey]; }
         }
+
+        internal static object RootObject
+        {
+            get { return ScenarioContext.Current[RootObjectKey]; }
+        }
     }
 }
