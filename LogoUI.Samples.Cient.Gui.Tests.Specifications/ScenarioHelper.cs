@@ -1,5 +1,4 @@
-﻿using Caliburn.Micro;
-using Solid.Practices.IoC;
+﻿using Solid.Practices.IoC;
 using TechTalk.SpecFlow;
 
 namespace LogoUI.Samples.Cient.Gui.Tests.Specifications
@@ -18,11 +17,10 @@ namespace LogoUI.Samples.Cient.Gui.Tests.Specifications
             ScenarioContext.Current.Add(RootObjectFactoryKey, rootObjectFactory);
         }
 
-        internal static void CreateAndActivateRootObject()
+        internal static void CreateRootObject()
         {
             var rootObjectFactory = (IRootObjectFactory)ScenarioContext.Current[RootObjectFactoryKey];
-            ScenarioContext.Current.Add(RootObjectKey, rootObjectFactory.CreateRootObject());
-            ScreenExtensions.TryActivate(ScenarioContext.Current[RootObjectKey]);
+            ScenarioContext.Current.Add(RootObjectKey, rootObjectFactory.CreateRootObject());            
         }        
 
         internal static void Clear()

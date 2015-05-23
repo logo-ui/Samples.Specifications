@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using Caliburn.Micro;
+using TechTalk.SpecFlow;
 
 namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Steps
 {
@@ -8,7 +9,8 @@ namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Steps
         [When(@"I open the application")]
         public void WhenIOpenTheApplication()
         {
-            ScenarioHelper.CreateAndActivateRootObject();
+            ScenarioHelper.CreateRootObject();
+            ScreenExtensions.TryActivate(ScenarioHelper.RootObject);
         }
     }
 }
