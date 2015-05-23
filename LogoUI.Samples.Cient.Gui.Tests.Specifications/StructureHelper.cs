@@ -7,17 +7,27 @@ namespace LogoUI.Samples.Cient.Gui.Tests.Specifications
     {
         internal static LoginViewModel GetLogin()
         {
-            return (LoginViewModel)GetActiveItem();
+            return (LoginViewModel)GetShellActiveItemInternal();
         }
 
-        internal static IScreen GetActiveItem()
+        internal static IScreen GetShellActiveItem()
         {
-            return (GetShell()).ActiveItem;
-        }
+            return GetShellActiveItemInternal();
+        }        
 
         internal static ShellViewModel GetShell()
         {
+            return GetShellInternal();
+        }
+
+        private static ShellViewModel GetShellInternal()
+        {
             return (ShellViewModel)ScenarioHelper.RootObject;
+        }
+
+        private static IScreen GetShellActiveItemInternal()
+        {
+            return (GetShellInternal()).ActiveItem;
         }
     }
 }

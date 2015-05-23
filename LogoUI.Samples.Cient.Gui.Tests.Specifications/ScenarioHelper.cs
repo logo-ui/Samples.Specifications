@@ -17,7 +17,7 @@ namespace LogoUI.Samples.Cient.Gui.Tests.Specifications
             ScenarioContext.Current.Add(RootObjectFactoryKey, rootObjectFactory);
         }
 
-        internal static void CreateRootObject()
+        public static void CreateRootObject()
         {
             var rootObjectFactory = (IRootObjectFactory)ScenarioContext.Current[RootObjectFactoryKey];
             ScenarioContext.Current.Add(RootObjectKey, rootObjectFactory.CreateRootObject());            

@@ -56,28 +56,28 @@ namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Steps
         [Then(@"Application automatically navigates to the login screen")]
         public void ThenApplicationAutomaticallyNavigatesToTheLoginScreen()
         {
-            var activeItem = StructureHelper.GetActiveItem();
+            var activeItem = StructureHelper.GetShellActiveItem();
             Assert.IsInstanceOf<LoginViewModel>(activeItem);
         }        
 
         [Then(@"Application navigates to the main screen")]
         public void ThenApplicationNavigatesToTheMainScreen()
         {
-            var activeItem = StructureHelper.GetActiveItem();
+            var activeItem = StructureHelper.GetShellActiveItem();
             Assert.IsInstanceOf<MainViewModel>(activeItem);
         }
 
         [Then(@"User remains at the login screen")]
         public void ThenUserRemainsAtTheLoginScreen()
         {
-            var activeItem = StructureHelper.GetActiveItem();
+            var activeItem = StructureHelper.GetShellActiveItem();
             Assert.IsInstanceOf<LoginViewModel>(activeItem);
         }
 
         [Then(@"User returns to the login screen")]
         public void ThenUserReturnsToTheLoginScreen()
         {
-            var activeItem = StructureHelper.GetActiveItem();
+            var activeItem = StructureHelper.GetShellActiveItem();
             Assert.IsInstanceOf<LoginViewModel>(activeItem);
         }
 
