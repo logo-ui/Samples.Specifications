@@ -3,7 +3,7 @@ using LogoUI.Samples.Client.Gui.Shell.ViewModels;
 
 namespace LogoUI.Samples.Cient.Gui.Tests.Specifications
 {
-    internal class StructureHelper
+    internal static class StructureHelper
     {
         internal static LoginViewModel GetLogin()
         {
