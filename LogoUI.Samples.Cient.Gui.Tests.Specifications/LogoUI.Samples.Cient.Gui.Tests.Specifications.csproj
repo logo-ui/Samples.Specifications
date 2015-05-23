@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Attest.Fake.Builders, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Attest\Attest.Fake.Builders.dll</HintPath>
+    </Reference>
     <Reference Include="Attest.Fake.Core">
       <HintPath>..\Lib\Attest\Attest.Fake.Core.dll</HintPath>
     </Reference>
@@ -120,6 +124,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpecflowBridge.cs" />
     <Compile Include="Steps\LogoutSteps.cs" />
+    <Compile Include="Steps\StepsBase.cs" />
     <Compile Include="StructureHelper.cs" />
   </ItemGroup>
   <ItemGroup>

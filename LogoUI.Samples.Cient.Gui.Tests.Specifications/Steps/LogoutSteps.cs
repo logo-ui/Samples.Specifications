@@ -1,9 +1,10 @@
-﻿using TechTalk.SpecFlow;
+﻿using Attest.Fake.Moq;
+using TechTalk.SpecFlow;
 
 namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Steps
 {
     [Binding]
-    class LogoutSteps
+    class LogoutSteps : StepsBase<FakeFactory>
     {
         [Given(@"Logout request succeeds")]
         public void GivenLogoutRequestSucceeds()

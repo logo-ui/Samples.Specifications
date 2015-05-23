@@ -1,17 +1,15 @@
 ﻿using Attest.Fake.Moq;
-using Attest.Tests.Core;
 using LogoUI.Samples.Client.Data.Providers.Contracts;
 using LogoUI.Samples.Client.Gui.Shell.ViewModels;
 using LogoUI.Samples.Client.Gui.Tests.Fake;
 using LogoUI.Samples.Client.Model.Shared;
 using NUnit.Framework;
-using Solid.Practices.IoC;
 using TechTalk.SpecFlow;
 
 namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Steps
 {    
     [Binding]
-    class LoginSteps
+    class LoginSteps : StepsBase<FakeFactory>
     {        
         [Given(@"I am an authenticated user with username '(.*)'")]
         public void GivenIAmAnAuthenticatedUserWithUsername(string userName)
@@ -30,8 +28,7 @@ namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Steps
         {
             var fakeLoginProvider = new FakeTestLoginProvider();
             fakeLoginProvider.SetupLoginSuccess();
-            IntegrationTestsHelper<FakeFactory>.RegisterService<ILoginProvider>(
-                (IIocContainer) ScenarioContext.Current["container"], fakeLoginProvider);
+            RegisterService<ILoginProvider>(fakeLoginProvider);
         }                
 
         [Given(@"Login request fails")]
@@ -39,8 +36,7 @@ namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Steps
         {
             var fakeLoginProvider = new FakeTestLoginProvider();
             fakeLoginProvider.SetupLoginFailure();
-            IntegrationTestsHelper<FakeFactory>.RegisterService<ILoginProvider>(
-                (IIocContainer)ScenarioContext.Current["container"], fakeLoginProvider); 
+            RegisterService<ILoginProvider>(fakeLoginProvider);
         }        
 
         [When(@"I select the network authentication option")]
