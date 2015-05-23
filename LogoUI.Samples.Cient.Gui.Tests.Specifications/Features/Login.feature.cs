@@ -193,31 +193,6 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Navigate to the login screen after the logout succeeds")]
-        [NUnit.Framework.CategoryAttribute("Integration")]
-        public virtual void NavigateToTheLoginScreenAfterTheLogoutSucceeds()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Navigate to the login screen after the logout succeeds", new string[] {
-                        "Integration"});
-#line 50
-this.ScenarioSetup(scenarioInfo);
-#line 51
- testRunner.Given("I am an authenticated user with username \'Vasya\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 52
- testRunner.And("Logout request succeeds", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 53
- testRunner.When("I open the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 54
- testRunner.And("I press the login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 55
- testRunner.And("I press the logout button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 56
- testRunner.Then("User returns to the login screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
     }
 }
 #pragma warning restore
