@@ -43,14 +43,16 @@
     <Reference Include="LogoFX.UI.Bootstrapping.SimpleContainer">
       <HintPath>..\Lib\LogoFX\LogoFX.UI.Bootstrapping.SimpleContainer.dll</HintPath>
     </Reference>
-    <Reference Include="LogoFX.UI.Modularity">
+    <Reference Include="LogoFX.UI.Modularity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\LogoFX\LogoFX.UI.Modularity.dll</HintPath>
     </Reference>
     <Reference Include="LogoFX.UI.Navigation">
       <HintPath>..\Lib\LogoFX\LogoFX.UI.Navigation.dll</HintPath>
     </Reference>
-    <Reference Include="LogoFX.UI.Views.Infra">
-      <HintPath>..\..\DataDisplay\Lib\LogoFX\LogoFX.UI.Views.Infra.dll</HintPath>
+    <Reference Include="LogoFX.UI.Views.Infra, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\LogoFX\LogoFX.UI.Views.Infra.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />

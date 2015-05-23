@@ -53,7 +53,7 @@ namespace LogoUI.Samples.Client.Gui.Shell.ViewModels
 
         public override string DisplayName
         {
-            get { return "LogoUI Samples - Builders"; }
+            get { return "LogoUI Samples - Specifications"; }
             set { }
         }
 
