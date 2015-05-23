@@ -1,15 +1,18 @@
-﻿using Caliburn.Micro;
+﻿using Attest.Fake.Moq;
+using Attest.Tests.Core;
+using Caliburn.Micro;
 using LogoUI.Samples.Client.Data.Providers.Contracts;
 using LogoUI.Samples.Client.Gui.Shell.ViewModels;
 using LogoUI.Samples.Client.Gui.Tests.Fake;
 using LogoUI.Samples.Client.Model.Shared;
 using NUnit.Framework;
+using Solid.Practices.IoC;
 using TechTalk.SpecFlow;
 
 namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Steps
-{
+{    
     [Binding]
-    class LoginSteps : IntegrationTestsBase
+    class LoginSteps
     {        
         [Given(@"I am an authenticated user with username '(.*)'")]
         public void GivenIAmAnAuthenticatedUserWithUsername(string userName)
@@ -28,14 +31,15 @@ namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Steps
         {
             var fakeLoginProvider = new FakeTestLoginProvider();
             fakeLoginProvider.SetupLoginSuccess();
-            RegisterService<ILoginProvider>(fakeLoginProvider);            
+            IntegrationTestsHelper<FakeFactory>.RegisterService<ILoginProvider>(
+                (IIocContainer) ScenarioContext.Current["container"], fakeLoginProvider);
         }
 
         [Given(@"Logout request succeeds")]
         public void GivenLogoutRequestSucceeds()
         {
             //TODO: do nothing for now
-            //think what shoule be the behavior in case of failed logout
+            //think what should be the behavior in case of failed logout
         }        
 
         [Given(@"Login request fails")]
@@ -43,14 +47,16 @@ namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Steps
         {
             var fakeLoginProvider = new FakeTestLoginProvider();
             fakeLoginProvider.SetupLoginFailure();
-            RegisterService<ILoginProvider>(fakeLoginProvider); 
+            IntegrationTestsHelper<FakeFactory>.RegisterService<ILoginProvider>(
+                (IIocContainer)ScenarioContext.Current["container"], fakeLoginProvider); 
         }
 
         [When(@"I open the application")]
         public void WhenIOpenTheApplication()
         {
-            ScenarioContext.Current.Add("test", CreateRootObject());
-            ScreenExtensions.TryActivate(ScenarioContext.Current["test"]);
+            var rootObjectFactory = (SpecflowBridge)ScenarioContext.Current["rootObjectFactory"];
+            ScenarioContext.Current.Add("rootObject", rootObjectFactory.CreateRootObjectInternal());            
+            ScreenExtensions.TryActivate(ScenarioContext.Current["rootObject"]);
         }
 
         [When(@"I select the network authentication option")]
@@ -144,7 +150,7 @@ namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Steps
 
         private static ShellViewModel GetShell()
         {
-            return (ShellViewModel)ScenarioContext.Current["test"];
+            return (ShellViewModel)ScenarioContext.Current["rootObject"];
         }
     }
 }
