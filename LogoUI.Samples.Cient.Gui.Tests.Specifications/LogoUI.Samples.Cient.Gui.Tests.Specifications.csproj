@@ -124,7 +124,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpecflowBridge.cs" />
     <Compile Include="Steps\LogoutSteps.cs" />
-    <Compile Include="StructureHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

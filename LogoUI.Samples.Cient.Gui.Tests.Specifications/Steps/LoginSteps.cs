@@ -4,6 +4,7 @@ using LogoUI.Samples.Client.Data.Providers.Contracts;
 using LogoUI.Samples.Client.Gui.Shell.ViewModels;
 using LogoUI.Samples.Client.Gui.Tests.Fake;
 using LogoUI.Samples.Client.Model.Shared;
+using LogoUI.Samples.Gui.Tests.Shared;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 

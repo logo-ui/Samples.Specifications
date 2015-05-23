@@ -1,29 +1,35 @@
-﻿using Attest.Tests.Specflow;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using LogoUI.Samples.Client.Gui.Shell.ViewModels;
 
-namespace LogoUI.Samples.Cient.Gui.Tests.Specifications
+namespace LogoUI.Samples.Gui.Tests.Shared
 {
-    internal static class StructureHelper
+    public static class StructureHelper
     {
-        internal static LoginViewModel GetLogin()
+        private static ShellViewModel _rootObject;
+
+        public static void SetRootObject(object rootObject)
+        {
+            _rootObject = (ShellViewModel) rootObject;
+        }
+
+        public static LoginViewModel GetLogin()
         {
             return (LoginViewModel)GetShellActiveItemInternal();
         }
 
-        internal static IScreen GetShellActiveItem()
+        public static IScreen GetShellActiveItem()
         {
             return GetShellActiveItemInternal();
         }        
 
-        internal static ShellViewModel GetShell()
+        public static ShellViewModel GetShell()
         {
             return GetShellInternal();
         }
 
         private static ShellViewModel GetShellInternal()
         {
-            return (ShellViewModel)ScenarioHelper.RootObject;
+            return _rootObject;
         }
 
         private static IScreen GetShellActiveItemInternal()
