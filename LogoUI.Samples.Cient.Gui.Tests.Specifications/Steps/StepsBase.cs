@@ -2,7 +2,6 @@
 using Attest.Fake.Core;
 using Attest.Tests.Core;
 using Solid.Practices.IoC;
-using TechTalk.SpecFlow;
 
 namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Steps
 {
@@ -35,7 +34,7 @@ namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Steps
 
         private static IIocContainer GetIocContainer()
         {
-            return (IIocContainer)ScenarioContext.Current["container"];
+            return (IIocContainer)ScenarioHelper.Container;
         }
     }
 }
