@@ -33,6 +33,13 @@ namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Steps
             RegisterService<ILoginProvider>(fakeLoginProvider);            
         }
 
+        [Given(@"Logout request succeeds")]
+        public void GivenLogoutRequestSucceeds()
+        {
+            //TODO: do nothing for now
+            //think what shoule be the behavior in case of failed logout
+        }        
+
         [Given(@"Login request fails")]
         public void GivenLoginRequestFails()
         {
@@ -60,7 +67,13 @@ namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Steps
         {
             var loginViewModel = (LoginViewModel)_rootObject.ActiveItem;
             loginViewModel.LoginCommand.Execute(null);
-        }        
+        }
+
+        [When(@"I press the logout button")]
+        public void WhenIPressTheLogoutButton()
+        {
+            _rootObject.LogoutCommand.Execute(null);
+        }
 
         [Then(@"Application automatically navigates to the login screen")]
         public void ThenApplicationAutomaticallyNavigatesToTheLoginScreen()
@@ -78,6 +91,13 @@ namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Steps
 
         [Then(@"User remains at the login screen")]
         public void ThenUserRemainsAtTheLoginScreen()
+        {
+            var activeItem = _rootObject.ActiveItem;
+            Assert.IsInstanceOf<LoginViewModel>(activeItem);
+        }
+
+        [Then(@"User returns to the login screen")]
+        public void ThenUserReturnsToTheLoginScreen()
         {
             var activeItem = _rootObject.ActiveItem;
             Assert.IsInstanceOf<LoginViewModel>(activeItem);
@@ -105,6 +125,14 @@ namespace LogoUI.Samples.Cient.Gui.Tests.Specifications.Steps
             var loginViewModel = (LoginViewModel)_rootObject.ActiveItem;
             var actualErrorMessage = loginViewModel.LoginFailureCause;
             StringAssert.AreEqualIgnoringCase(expectedErrorMessage, actualErrorMessage);
-        }        
+        }
+
+        [Then(@"Username displayed at the top of the screen says '(.*)'")]
+        public void ThenUsernameDisplayedAtTheTopOfTheScreenSays(string userName)
+        {
+            var actualUserName = _rootObject.CurrentUser;
+            Assert.AreEqual(userName, actualUserName);
+        }
+
     }
 }

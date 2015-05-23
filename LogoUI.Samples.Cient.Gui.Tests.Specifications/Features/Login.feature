@@ -35,6 +35,7 @@ Scenario: Navigate to the main screen when the login is successful
 	When I open the application
 	And I press the login button
 	Then Application navigates to the main screen
+	And Username displayed at the top of the screen says 'Vasya'
 
 @Integration
 Scenario: Remain at the login screen when the login fails
@@ -44,3 +45,12 @@ Scenario: Remain at the login screen when the login fails
 	And I press the login button
 	Then User remains at the login screen
 	And Error message is displayed with the following text 'Login failed'
+
+@Integration
+Scenario: Navigate to the login screen after the logout succeeds
+	Given I am an authenticated user with username 'Vasya'
+	And Logout request succeeds
+	When I open the application
+	And I press the login button
+	And I press the logout button
+	Then User returns to the login screen	
